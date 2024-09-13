@@ -5,7 +5,7 @@ const AcercaDe = ({ darkMode }) => {
   return (
     <div
       name="acerca de"
-      className={`w-full h-auto lg:h-screen bg-gradient-to-b ${
+      className={`bg-gradient-to-b w-full min-h-screen ${
         darkMode ? "text-white" : "text-black"
       }`}
     >

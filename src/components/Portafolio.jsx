@@ -38,7 +38,7 @@ const Portafolio = ({ darkMode }) => {
     },
   ];
 
-  const portafolioClass = `grid sm:grid-cols-2 md:grid-cols-3 gap-8 px-12 sm:px-0 ${
+  const portafolioClass = `grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-12 sm:px-0 ${
     darkMode ? "text-white" : "text-black"
   }`;
 
@@ -47,7 +47,7 @@ const Portafolio = ({ darkMode }) => {
   return (
     <div
       name="portafolio"
-      className={`bg-gradient-to-b w-full md:h-screen ${
+      className={`bg-gradient-to-b w-full min-h-screen ${
         darkMode ? "text-white" : "text-black"
       }`}
     >

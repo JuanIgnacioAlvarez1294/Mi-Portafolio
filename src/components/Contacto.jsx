@@ -19,7 +19,7 @@ const Contacto = ({ darkMode }) => {
   return (
     <div
       name="contacto"
-      className={`flex h-screen bg-gradient-to-b ${
+      className={`flex bg-gradient-to-b w-full min-h-screen ${
         darkMode ? "text-white" : "text-black"
       }`}
     >

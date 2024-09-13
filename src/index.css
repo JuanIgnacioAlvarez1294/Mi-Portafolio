@@ -42,6 +42,13 @@
   }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .custom-class {
+    /* Estilos personalizados para pantallas medianas */
+  }
+}
+
+
 /* Estilos para el modo oscuro */
 /* Añadir estilos de modo oscuro */
 .dark {
