@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "my-portafolio-5b6df"
-  }
+    "default": "my-portafolio-5b6df",
+    "y": "my-portafolio-5b6df"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
