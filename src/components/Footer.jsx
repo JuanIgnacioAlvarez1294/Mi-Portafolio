@@ -11,7 +11,7 @@ function Footer({ darkMode }) {
           <a href="https://www.instagram.com/nacho.alvarez1294" target="_blank" rel="noopener noreferrer">
             <FaInstagram className="text-2xl" title="Instagram" />
           </a>
-          <a href="www.linkedin.com/in/juanignacio-tech" target="_blank" rel="noopener noreferrer">
+          <a href="https://linkedin.com/in/juanignacio-tech" target="_blank" rel="noopener noreferrer">
             <FaLinkedin className="text-2xl" title="LinkedIn" />
           </a>
           <a href="https://github.com/JuanIgnacioAlvarez1294" target="_blank" rel="noopener noreferrer">

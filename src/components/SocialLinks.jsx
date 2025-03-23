@@ -12,7 +12,7 @@ const SocialLinks = ({ darkMode }) => {
           LinkedIn <FaLinkedin size={30} />
         </>
       ),
-      href: "www.linkedin.com/in/juanignacio-tech",
+      href: "https://linkedin.com/in/juanignacio-tech",
       style: "rounded-tr-md",
     },
     {
