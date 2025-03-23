@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useRef } from "react";
+import emailjs from 'emailjs-com'; // Importamos EmailJS
 import milogoDark from "../assets/milogoDark.png";
 import milogoLight from "../assets/milogoLight.png";
 
 const Contacto = ({ darkMode }) => {
+    const form = useRef(); // Creamos una referencia para el formulario
+
+  const sendEmail = (e) => {
+    e.preventDefault(); // Evitamos el comportamiento por defecto del formulario
+    emailjs.sendForm(
+      'service_xdg8irn', // Reemplaza con tu Service ID de EmailJS
+      'template_p4a4vks', // Reemplaza con tu Template ID de EmailJS
+      form.current,
+      '5uIgEVwgKOy-6HZki' // Public Key proporcionada
+    )
+    .then((result) => {
+      console.log(result.text);
+      alert("Mensaje enviado con éxito!");
+    }, (error) => {
+      console.log(error.text);
+      alert("Hubo un error al enviar el mensaje, por favor inténtalo de nuevo.");
+    });
+  };
   const logo = darkMode ? milogoDark : milogoLight;
   const darkLogoStyle = {
     width: "700px", // Cambio este valor según el tamaño deseado para milogoDark
@@ -36,9 +55,9 @@ const Contacto = ({ darkMode }) => {
         </p>
 
         <form
-          action="https://getform.io/f/e1470229-15c5-427a-9be6-0c5b0468884d"
-          method="POST"
-          className="flex flex-col w-full lg:min-w-full lg:pl-60 bg "
+          ref={form} // Utilizamos la referencia en el formulario
+          onSubmit={sendEmail} // Manejamos el envío con la función sendEmail
+          className="flex flex-col w-full lg:min-w-full lg:pl-60 bg"
         >
           <label htmlFor="name" className={labelColor}>
             Nombre:
@@ -48,7 +67,7 @@ const Contacto = ({ darkMode }) => {
             id="name"
             name="name"
             placeholder="Introduzca su nombre"
-            className={`p-2 bg-transparent border-2 rounded-md text-black focus:outline-none ${
+            className={`p-2 bg-transparent border-2 rounded-md focus:outline-none ${textColor} ${
               darkMode ? "border-gray-500" : "border-gray-300"
             }`}
           />

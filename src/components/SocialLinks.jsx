@@ -12,7 +12,7 @@ const SocialLinks = ({ darkMode }) => {
           LinkedIn <FaLinkedin size={30} />
         </>
       ),
-      href: "https://www.linkedin.com/in/juan-ignacio-1294j20i30a",
+      href: "www.linkedin.com/in/juanignacio-tech",
       style: "rounded-tr-md",
     },
     {
@@ -22,7 +22,7 @@ const SocialLinks = ({ darkMode }) => {
           GitHub <FaGithub size={30} />
         </>
       ),
-      href: "https://github.com/JuanIgnacioAlvarez",
+      href: "https://github.com/JuanIgnacioAlvarez1294",
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const SocialLinks = ({ darkMode }) => {
           Mail <HiOutlineMail size={30} />
         </>
       ),
-      href: "mailto:contacto@juanignacio.tech",
+      href: "mailto:nacho1294.ji@gmail.com",
     },
     {
       id: 4,
