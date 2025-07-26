@@ -27,7 +27,7 @@
 - [LinkedIn](https://www.linkedin.com/in/juan-ignacio-1294j20i30a)
 - [GitHub](https://github.com/JuanIgnacioAlvarez)
 - [Instagram](https://www.instagram.com/nacho.alvarez1294)
-- Email: contacto@juanignacio.tech
+- Email: nacho1294.ji@gmail.com
 - [Currículum Vitae](enlace a la descarga de tu currículum vitae)
 
 ## Funcionalidades Especiales
