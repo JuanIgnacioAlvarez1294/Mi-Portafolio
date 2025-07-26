@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import GastoSemanal from "../assets/portfolio/GastoSemanal.png";
-import installNode from "../assets/portfolio/panningTrip.png";
-import navbar from "../assets/portfolio/navbar.png";
-import reactParallax from "../assets/portfolio/reactParallax.png";
-import reactSmooth from "../assets/portfolio/seguroHogar.png";
-import reactWeather from "../assets/portfolio/addStudent.png";
+import HotelWebImg from "../assets/portfolio/HotelWebImg.png";
+import RH_PROJECTImg from "../assets/portfolio/RH_PROJECTImg.png";
+import MenudigitalImg from "../assets/portfolio/MenudigitalImg.png";
+import JournalAppImg from "../assets/portfolio/JournalAppImg.png";
+import CalendarAppImg from "../assets/portfolio/CalendarAppImg.png";
+import FinanzaPersonalImg from "../assets/portfolio/FinanzaPersonalImg.png";
 import ReactPlayer from "react-player"; // Importar ReactPlayer
-import ProbandoVideo from "../assets/portfolio/Probando.mp4";
+import MenúDigital from "../assets/portfolio/MenúDigital.mp4";
+import RH_PROJECT from "../assets/portfolio/RH_PROJECT.mp4";
+import CalendarApp from "../assets/portfolio/CalendarApp.mp4";
+import HotelWeb from "../assets/portfolio/HotelWeb.mp4";
+import JournalApp from "../assets/portfolio/JournalApp.mp4";
+import FinanzaPersonal from "../assets/portfolio/FinanzaPersonal.mp4";
 
 const Portafolio = ({ darkMode }) => {
   const [isOpen, setIsOpen] = useState(false); // Estado para controlar el modal
@@ -28,20 +33,20 @@ const Portafolio = ({ darkMode }) => {
   const backendProjects = [
     {
       id: 1,
-      src: reactWeather,
-      demoLink: ProbandoVideo, // Usamos el video importado
-      codeLink: "https://github.com/JuanIgnacioAlvarez/presupuesto-en-react.git",
+      src: CalendarAppImg,
+      demoLink: CalendarApp, // Usamos el video importado
+      codeLink: "https://github.com/JuanIgnacioAlvarez1294/CalenPro-Monorepo.git",
     },
     {
       id: 2,
-      src: reactParallax,
-      demoLink: ProbandoVideo,
-      codeLink: "https://github.com/JuanIgnacioAlvarez/presupuesto-en-react.git",
+      src: MenudigitalImg,
+      demoLink: MenúDigital,
+      codeLink: "https://github.com/JuanIgnacioAlvarez/Menu-Digital.git",
     },
     {
       id: 3,
-      src: navbar,
-      demoLink: ProbandoVideo,
+      src: RH_PROJECTImg,
+      demoLink: RH_PROJECT,
       codeLink: "https://github.com/JuanIgnacioAlvarez1294/Sistema-de-Recursos-Humanos-con-Spring-Boot-y-React",
     },
   ];
@@ -49,21 +54,21 @@ const Portafolio = ({ darkMode }) => {
   const frontendProjects = [
     {
       id: 4,
-      src: reactSmooth,
-      demoLink: "https://github.com/JuanIgnacioAlvarez1294/ProyectoCotizador",
-      codeLink: "https://github.com/JuanIgnacioAlvarez1294/ProyectoCotizador",
+      src: JournalAppImg,
+      demoLink: JournalApp,
+      codeLink: "https://github.com/JuanIgnacioAlvarez1294/Journal-App.git",
     },
     {
       id: 5,
-      src: installNode,
-      demoLink: "https://github.com/JuanIgnacioAlvarez1294/experience-react-tailwind",
+      src: HotelWebImg,
+      demoLink: HotelWeb,
       codeLink: "https://github.com/JuanIgnacioAlvarez1294/experience-react-tailwind",
     },
     {
       id: 6,
-      src: GastoSemanal,
-      demoLink: "https://presupuesto-reactjs-juan.netlify.app/",
-      codeLink: "https://github.com/JuanIgnacioAlvarez/presupuesto-en-react.git",
+      src: FinanzaPersonalImg,
+      demoLink: FinanzaPersonal,
+      codeLink: "https://github.com/JuanIgnacioAlvarez1294/Finanzas-Personales-React-App.git",
     },
   ];
 
@@ -98,7 +103,7 @@ const Portafolio = ({ darkMode }) => {
         {/* Backend + Frontend Projects Section */}
         <div>
           <h2 className="text-2xl font-bold mb-4">
-            Backend & Frontend (Spring Boot + React)
+            Backend & Frontend (Node + React 1) (Spring Boot + React 2-3)
           </h2>
           <div className={portafolioClass}>
             {backendProjects.map(({ id, src, demoLink, codeLink }) => (
