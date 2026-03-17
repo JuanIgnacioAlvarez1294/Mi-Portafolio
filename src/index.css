@@ -1,127 +1,49 @@
-/* Importación de Tailwind CSS y fuentes de Google */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+/* English: Optimized Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Raleway:wght@300;400;700&family=Great+Vibes&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definición de estilos base */
 @layer base {
   html {
-    font-family: 'Raleway', sans-serif; /* Definición de la fuente predeterminada */
+    @apply scroll-smooth; /* English: Enables smooth scrolling globally */
+    font-family: 'Inter', sans-serif; 
+  }
+
+  body {
+    @apply antialiased overflow-x-hidden transition-colors duration-300;
   }
 }
 
-/* Estilos para secciones de altura completa */
-/* Establecer altura completa para secciones */
-.h-screen {
-  height: 100vh; /* Establecer la altura al 100% del alto del viewport */
-}
+@layer components {
+  /* English: Glassmorphism effect for modern cards */
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+  }
 
-/* Ajustar secciones individuales si es necesario */
-/* Por ejemplo, sección de Contacto */
-.contacto-section {
-  min-height: 100vh; /* Asegurar que la sección de Contacto ocupe todo el viewport */
-}
+  /* English: Institutional Gradients */
+  .bg-grad-siglo {
+    @apply bg-gradient-to-r from-siglo21-dark to-siglo21;
+  }
 
-/* Estilos para el fondo del formulario */
-.form-container {
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra suave */
-}
+  .bg-grad-teclab {
+    @apply bg-gradient-to-r from-teclab-dark to-teclab;
+  }
 
-/* Estilos para pantallas más pequeñas (por ejemplo, hasta 768px) */
-@media (max-width: 768px) {
-  .social-links {
-    /* Define estilos específicos para pantallas pequeñas aquí */
-    /* Por ejemplo, cambia la posición o el tamaño del componente */
-    flex-direction: column; /* Cambia la dirección de los elementos a columna */
-    align-items: center; /* Centra los elementos verticalmente */
+  /* English: Modern Buttons */
+  .btn-primary {
+    @apply px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  .custom-class {
-    /* Estilos personalizados para pantallas medianas */
-  }
+/* English: Fix for full height sections on mobile */
+.h-screen-fix {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
-
-/* Estilos para el modo oscuro */
-/* Añadir estilos de modo oscuro */
-.dark {
-  @apply bg-gray-800 text-zinc-50; /* Aplicar estilos para el fondo oscuro y texto claro */
+/* English: Dark Mode Global Styles */
+.dark body {
+  @apply bg-[#0a0a0a] text-gray-100;
 }
-
-/* Estilos para la barra de navegación fija */
-.fixed-navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000; /* Asegura que la barra de navegación esté por encima de otros elementos */
-}
-
-@layer base {
-  html {
-    font-family: 'Raleway', sans-serif;
-  }
-}
-
-/* Definición de estilos base */
-@layer base {
-  html {
-    font-family: 'Raleway', sans-serif; /* Definición de la fuente predeterminada */
-  }
-}
-
-/* Estilos para secciones de altura completa */
-/* Establecer altura completa para secciones */
-.h-screen {
-  height: 100vh; /* Establecer la altura al 100% del alto del viewport */
-}
-
-/* Ajustar secciones individuales si es necesario */
-/* Por ejemplo, sección de Contacto */
-.contacto-section {
-  min-height: 100vh; /* Asegurar que la sección de Contacto ocupe todo el viewport */
-}
-
-/* Estilos para el fondo del formulario */
-.form-container {
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra suave */
-}
-
-/* Estilos para pantallas más pequeñas (por ejemplo, hasta 768px) */
-@media (max-width: 768px) {
-  .social-links {
-    /* Define estilos específicos para pantallas pequeñas aquí */
-    /* Por ejemplo, cambia la posición o el tamaño del componente */
-    flex-direction: column; /* Cambia la dirección de los elementos a columna */
-    align-items: center; /* Centra los elementos verticalmente */
-  }
-}
-
-/* Estilos para el modo oscuro */
-/* Añadir estilos de modo oscuro */
-.dark {
-  @apply bg-gray-800 text-zinc-50; /* Aplicar estilos para el fondo oscuro y texto claro */
-}
-
-/* Estilos para la barra de navegación fija */
-.fixed-navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000; /* Asegura que la barra de navegación esté por encima de otros elementos */
-}
-
-@layer base {
-  html {
-    font-family: 'Raleway', sans-serif;
-  }
-}
-

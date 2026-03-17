@@ -1,122 +1,117 @@
 import React, { useRef } from "react";
-import emailjs from 'emailjs-com'; // Importamos EmailJS
+import emailjs from 'emailjs-com';
 import milogoDark from "../assets/milogoDark.png";
 import milogoLight from "../assets/milogoLight.png";
 
+/**
+ * Contacto Component
+ * English: Contact form integrated with EmailJS, featuring institutional branding and responsive split layout.
+ */
+
 const Contacto = ({ darkMode }) => {
-    const form = useRef(); // Creamos una referencia para el formulario
+  const form = useRef();
 
   const sendEmail = (e) => {
-    e.preventDefault(); // Evitamos el comportamiento por defecto del formulario
+    e.preventDefault();
     emailjs.sendForm(
-      'service_xdg8irn', // Reemplaza con tu Service ID de EmailJS
-      'template_p4a4vks', // Reemplaza con tu Template ID de EmailJS
+      'service_xdg8irn',
+      'template_p4a4vks',
       form.current,
-      '5uIgEVwgKOy-6HZki' // Public Key proporcionada
+      '5uIgEVwgKOy-6HZki'
     )
     .then((result) => {
-      console.log(result.text);
-      alert("Mensaje enviado con éxito!");
+      alert("¡Mensaje enviado con éxito!");
+      form.current.reset(); // English: Clear form after success
     }, (error) => {
-      console.log(error.text);
-      alert("Hubo un error al enviar el mensaje, por favor inténtalo de nuevo.");
+      alert("Hubo un error. Por favor, inténtalo de nuevo.");
     });
   };
-  const logo = darkMode ? milogoDark : milogoLight;
-  const darkLogoStyle = {
-    width: "700px", // Cambio este valor según el tamaño deseado para milogoDark
-    height: "auto",
-  };
-  const textColor = darkMode ? "text-black-300" : "text-black-600"; // Color del texto en modo light
-  const lightLogoStyle = {
-    width: darkLogoStyle.width, // Utiliza el mismo ancho que milogoDark
-    height: darkLogoStyle.height, // Utiliza la misma altura que milogoDark
-  };
 
-  const labelColor = darkMode ? "text-white" : "text-black-600"; 
+  const logo = darkMode ? milogoDark : milogoLight;
+  const inputBg = darkMode ? "bg-[#121212]" : "bg-white";
+  const borderColor = darkMode ? "border-gray-700 focus:border-teclab" : "border-gray-300 focus:border-siglo21";
 
   return (
     <div
       name="contacto"
-      className={`flex bg-gradient-to-b w-full min-h-screen ${
-        darkMode ? "text-white" : "text-black"
+      className={`w-full min-h-screen flex items-center transition-colors duration-500 ${
+        darkMode ? "bg-black text-white" : "bg-gray-50 text-gray-900"
       }`}
     >
-      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-4">
-        <div
-          className={`pb-8 text-4xl font-bold inline border-b-4 ${
-            darkMode ? "border-gray-500" : "border-gray-900"
-          }`}
-        >
-          Contacto
+      <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row items-center justify-between w-full px-8 py-20 gap-12">
+        
+        {/* LADO IZQUIERDO: FORMULARIO */}
+        <div className="w-full lg:w-1/2 flex flex-col">
+          <div className="pb-8">
+            <p className="text-5xl font-extrabold inline border-b-4 border-teclab uppercase tracking-widest">
+              Contacto
+            </p>
+            <p className="py-6 text-lg opacity-70">
+              ¿Tienes un proyecto en mente? Hablemos y trabajemos juntos.
+            </p>
+          </div>
+
+          <div className={`p-8 rounded-2xl shadow-2xl ${darkMode ? "bg-gray-900/50" : "bg-white"}`}>
+            <form
+              ref={form}
+              onSubmit={sendEmail}
+              className="flex flex-col w-full space-y-4"
+            >
+              <div className="flex flex-col">
+                <label className="mb-2 font-semibold">Nombre</label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Tu nombre completo"
+                  className={`p-3 rounded-lg border-2 outline-none transition-all duration-300 ${inputBg} ${borderColor}`}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="mb-2 font-semibold">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="tu@email.com"
+                  className={`p-3 rounded-lg border-2 outline-none transition-all duration-300 ${inputBg} ${borderColor}`}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="mb-2 font-semibold">Mensaje</label>
+                <textarea
+                  name="message"
+                  required
+                  rows="6"
+                  placeholder="Cuéntame sobre tu propuesta..."
+                  className={`p-3 rounded-lg border-2 outline-none transition-all duration-300 resize-none ${inputBg} ${borderColor}`}
+                ></textarea>
+              </div>
+
+              <button
+                className="mt-4 py-4 rounded-xl font-bold text-white uppercase tracking-widest transition-all duration-300 transform hover:scale-105 active:scale-95 bg-gradient-to-r from-siglo21 to-teclab shadow-lg shadow-teclab/20"
+              >
+                Enviar Mensaje
+              </button>
+            </form>
+          </div>
         </div>
-        <p className={`py-6 lg:pl-32 ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
-          Envíe el siguiente formulario para ponerse en contacto conmigo
-        </p>
 
-        <form
-          ref={form} // Utilizamos la referencia en el formulario
-          onSubmit={sendEmail} // Manejamos el envío con la función sendEmail
-          className="flex flex-col w-full lg:min-w-full lg:pl-60 bg"
-        >
-          <label htmlFor="name" className={labelColor}>
-            Nombre:
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Introduzca su nombre"
-            className={`p-2 bg-transparent border-2 rounded-md focus:outline-none ${textColor} ${
-              darkMode ? "border-gray-500" : "border-gray-300"
-            }`}
-          />
-
-          <label htmlFor="email" className={labelColor}>
-            Correo Electrónico:
-          </label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            placeholder="Introduce tu correo electrónico"
-            className={`my-4 p-2 bg-transparent border-2 rounded-md focus:outline-none ${textColor} ${
-              darkMode ? "border-gray-500" : "border-gray-300"
-            }`}
-          />
-
-          <label htmlFor="message" className={labelColor}>
-            Mensaje:
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Ingrese su mensaje"
-            rows="10"
-            className={`p-2 bg-transparent border-2 rounded-md focus:outline-none ${textColor} ${
-              darkMode ? "border-gray-500" : "border-gray-300"
-            }`}
-          ></textarea>
-
-          <button
-            className={`text-white bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300 ${
-              darkMode ? "border-gray-500" : "border-gray-300"
-            }`}
-          >
-            Hablemos!!!
-          </button>
-        </form>
-      </div>
-
-      <div className="w-full lg:w-1/2 flex justify-center items-center lg:mt-0 mt-8">
-        <img
-          src={logo}
-          alt="Mi Logo"
-          className={`rounded-lg object-cover ${
-            darkMode ? "" : "w-3/4 h-3/4" // Cambio el tamaño de milogoLight si es necesario
-          }`}
-          style={darkMode ? darkLogoStyle : lightLogoStyle} // Aplico el estilo correspondiente al modo
-        />
+        {/* LADO DERECHO: LOGO / BRANDING */}
+        <div className="w-full lg:w-1/2 flex justify-center items-center">
+          <div className="relative group">
+            {/* English: Background glow using university colors */}
+            <div className={`absolute -inset-4 rounded-full blur-3xl opacity-20 animate-pulse ${darkMode ? "bg-teclab" : "bg-siglo21"}`}></div>
+            
+            <img
+              src={logo}
+              alt="Juan Ignacio Logo"
+              className="relative z-10 w-full max-w-[500px] h-auto object-contain transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

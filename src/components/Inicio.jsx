@@ -1,118 +1,140 @@
 import React, { useState } from "react";
-import HeroImage from "../assets/heroImage.jpeg";
+import HeroImage from "../assets/heroImage.png";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { Link } from "react-scroll";
 import ReactPlayer from "react-player";
-import Modal from "react-modal"; // Asegúrate de tener react-modal instalado
-import Probando from "../assets/portfolio/Probando.mp4"; // Importa el video
+import Modal from "react-modal";
+import Presentacion from "../assets/portfolio/presentacion.mp4";
 
-// Estilos para el modal
+/**
+ * Componente Inicio - Versión Identidad Profesional
+ * Integración de títulos: Técnico (Teclab), Analista y Licenciado (Siglo 21)
+ */
+
 const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.85)",
+    backdropFilter: "blur(4px)",
+    zIndex: 1000,
+  },
   content: {
     top: "50%",
     left: "50%",
-    right: "0",
-    bottom: "0",
-    marginRight: "0",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    width: "60%",
-    height: "60%",
-    backgroundColor: "rgba(0, 0, 0, 0.9)", // Fondo oscuro para el modal
-    border: "none", // Sin bordes
+    width: "90%",
+    maxWidth: "800px",
+    aspectRatio: "16/9",
+    backgroundColor: "#000",
+    border: "1px solid #333",
+    borderRadius: "15px",
+    padding: "0",
+    overflow: "hidden",
   },
 };
 
+if (typeof window !== "undefined") {
+  Modal.setAppElement("#root");
+}
+
 const Inicio = ({ darkMode }) => {
-  // Estado para controlar la apertura/cierre del modal
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  // Funciones para abrir y cerrar el modal
-  function openModal() {
-    setModalIsOpen(true);
-  }
-
-  function closeModal() {
-    setModalIsOpen(false);
-  }
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
 
   return (
     <div
       name="inicio"
-      className={`h-screen w-full ${darkMode ? "bg-black" : "bg-gray-300"} ${
-        darkMode ? "text-white" : "text-white"
+      className={`h-screen w-full transition-all duration-500 ${
+        darkMode 
+          ? "bg-gradient-to-b from-black via-black to-gray-900 text-white" 
+          : "bg-gray-100 text-gray-900"
       } flex items-center`}
     >
-      {/* Contenido del componente de Inicio */}
-      <div className="max-w-screen-lg mx-auto flex flex-col md:flex-row w-full justify-center items-center h-full px-4">
-        <div className="flex flex-col justify-center h-full">
-          {/* Contenido del título */}
-          <h2
-            className={`text-4xl sm:text-7xl font-bold ${
-              darkMode ? "text-white" : "text-gray-900"
-            }`}
-          >
+      <div className="max-w-screen-lg mx-auto flex flex-col md:flex-row w-full justify-center items-center h-full px-8 gap-12">
+        
+        {/* COLUMNA DE TEXTO */}
+        <div className="flex flex-col justify-center h-full text-center md:text-left flex-1 order-2 md:order-1">
+          <h2 className="text-4xl sm:text-6xl font-extrabold leading-tight">
             Juan Ignacio Alvarez
           </h2>
+          
+          <div className="flex items-center justify-center md:justify-start gap-2 mt-4">
+            <span className="h-1 w-8 bg-siglo21 rounded-full"></span>
+            <p className="text-sm md:text-base font-bold uppercase tracking-[0.2em] opacity-90 text-siglo21">
+              Licenciado en Informática | Java Backend Developer
+            </p>
+          </div>
 
-          {/* Contenido del párrafo */}
-          <p
-            className={`py-4 max-w-md ${
-              darkMode ? "text-white" : "text-black"
-            }`}
-          >
-            Apasionado estudiante de Informática con habilidades sólidas en desarrollo web, destacándome en JavaScript, React, y tecnologías backend como Java, Spring Boot, y gestión de bases de datos. Comprometido con la innovación, aprendizaje continuo y habilidades sólidas en metodologías ágiles y trabajo en equipo. Encantado de compartir mi portafolio con usted ¡Bienvenido!
+          <p className={`py-6 max-w-lg text-lg leading-relaxed ${
+              darkMode ? "text-gray-400" : "text-gray-600"
+          }`}>
+              Profesional graduado con una sólida trayectoria técnica y académica: 
+              <span className="text-teclab font-bold"> Técnico</span>, 
+              <span className="text-siglo21 font-bold"> Analista</span> y 
+              <span className="text-siglo21 font-bold"> Licenciado en Informática</span>. 
+              Mi enfoque principal es el ecosistema <span className={`font-bold italic ${darkMode ? "text-white" : "text-gray-900"}`}>Java & Spring Boot</span>, 
+              con dominio en arquitecturas de <span className={`font-semibold ${darkMode ? "text-white" : "text-gray-900"}`}>Microservicios, Docker</span> 
+              y soluciones Full Stack con <span className={`font-semibold ${darkMode ? "text-white" : "text-gray-900"}`}>React</span>.
           </p>
 
-          {/* Botón de enlace */}
-          <div>
+          <div className="flex justify-center md:justify-start gap-4">
             <button
-              onClick={openModal} // Al hacer clic, se abre el modal
-              className={`group ${
-                darkMode ? "text-white" : "text-gray-800"
-              } w-fit px-6 py-3 my-2 flex items-center rounded-md ${
-                darkMode
-                  ? "bg-gradient-to-r from-cyan-500 to-blue-500"
-                  : "bg-gradient-to-r from-cyan-500 to-blue-500"
-              } cursor-pointer`}
+              onClick={openModal}
+              className={`group text-white w-fit px-8 py-4 my-2 flex items-center rounded-full font-bold transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 ${
+                darkMode 
+                ? "bg-gradient-to-r from-siglo21 to-teclab shadow-siglo21/20" 
+                : "bg-gradient-to-r from-siglo21 to-teclab shadow-teclab/30"
+              }`}
             >
-              Presentación
-              <span
-                className={`group-hover:rotate-90 duration-300 ${
-                  darkMode ? "text-white" : "text-gray-800"
-                }`}
-              >
+              Ver Presentación
+              <span className="group-hover:rotate-90 duration-300">
                 <MdOutlineKeyboardArrowRight size={25} className="ml-1" />
               </span>
             </button>
           </div>
         </div>
 
-        {/* Imagen */}
-        <div>
-          <img
-            src={HeroImage}
-            alt="my profile"
-            className="rounded-2xl mx-auto w-2/3 md:w-full"
-          />
+        {/* COLUMNA DE IMAGEN CON GLOW ACADÉMICO */}
+        <div className="flex-1 flex justify-center items-center order-1 md:order-2">
+          <div className="relative group">
+            {/* Efecto de aura dual: Verde (Siglo 21) y Azul (Teclab) */}
+            <div className="absolute -inset-1 bg-gradient-to-tr from-siglo21 to-teclab rounded-3xl blur-2xl opacity-30 group-hover:opacity-60 transition duration-1000"></div>
+            
+            <img
+              src={HeroImage}
+              alt="Perfil Juan Ignacio"
+              className="relative rounded-3xl mx-auto w-64 md:w-80 lg:w-96 shadow-2xl transition-transform duration-700 hover:scale-[1.02] border border-white/10"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Modal para mostrar el video */}
+      {/* MODAL DE VIDEO */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Video Modal"
+        contentLabel="Video de Presentación"
       >
-        <div className="flex justify-end">
+        <div className="relative w-full h-full bg-black flex items-center justify-center">
           <button
             onClick={closeModal}
-            className="text-blue-500 font-bold text-xl"
+            className="absolute top-4 right-4 z-50 bg-white/10 hover:bg-red-500/80 text-white w-10 h-10 rounded-full backdrop-blur-md transition-all flex items-center justify-center font-bold"
           >
-            X
+            ✕
           </button>
+          
+          <ReactPlayer 
+            url={Presentacion} 
+            controls 
+            width="100%" 
+            height="100%"
+            playing={modalIsOpen}
+          />
         </div>
-        <ReactPlayer url={Probando} controls width="100%" height="100%"/>
       </Modal>
     </div>
   );

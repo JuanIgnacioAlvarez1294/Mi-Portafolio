@@ -5,60 +5,57 @@ const AcercaDe = ({ darkMode }) => {
   return (
     <div
       name="acerca de"
-      className={`bg-gradient-to-b w-full min-h-screen ${
-        darkMode ? "text-white" : "text-black"
+      className={`w-full min-h-screen py-20 flex items-center transition-colors duration-500 ${
+        darkMode ? "bg-black text-white" : "bg-gray-50 text-gray-900"
       }`}
     >
-      <div className="max-w-screen-lg p-4 mx-auto flex flex-col lg:flex-row justify-center w-full h-full">
-        <div className="pb-4 lg:w-1/3 lg:pb-0 flex justify-center items-center">
-          <img
-            src={JuanIgnacioAlvarez}
-            alt="Imagen de perfil"
-            className="rounded-2xl w-full h-full object-cover"
-          />
+      <div className="max-w-screen-lg p-4 mx-auto flex flex-col md:flex-row items-center gap-12">
+        
+        {/* COLUMNA IMAGEN */}
+        <div className="w-full md:w-1/3 flex justify-center">
+          <div className="relative">
+            <div className="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-siglo21 rounded-tl-2xl"></div>
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-teclab rounded-br-2xl"></div>
+            
+            <img
+              src={JuanIgnacioAlvarez}
+              alt="Juan Ignacio Alvarez"
+              className="rounded-2xl w-64 h-80 md:w-full md:h-auto object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 border-4 border-transparent hover:border-white/10"
+            />
+          </div>
         </div>
 
-        <div
-          className={`lg:w-2/3 pl-4 lg:pl-8 p-6 lg:ml-4 lg:mt-4 ${
-            darkMode ? "bg-transparent" : "bg-gray-300"
-          } ${darkMode ? "border-none" : "rounded-lg border-gray-300"}`}
-        >
-          <p
-            className={`text-4xl font-bold inline ${
-              darkMode ? "border-transparent" : "border-b-4"
-            } ${darkMode ? "text-gray-300" : ""}`}
-          >
-            Acerca De
-          </p>
+        {/* COLUMNA TEXTO REFINADO */}
+        <div className="w-full md:w-2/3">
+          <div className="mb-6">
+            <h2 className={`text-5xl font-extrabold inline border-b-4 border-siglo21 uppercase tracking-tighter ${
+                darkMode ? "text-white" : "text-gray-900"
+            }`}>
+              Mi Historia
+            </h2>
+          </div>
 
-          <p
-            className={`text-xl mt-4 lg:mt-8 ${
-              darkMode ? "text-white" : "text-gray-800"
-            }`}
-          >
-            Soy un apasionado estudiante de Informática que desde temprana edad
-            ha encontrado fascinación en el aprendizaje y descubrimiento
-            constante. La tecnología y la informática han sido mis aliadas en
-            esta travesía, brindándome un universo de conocimiento en constante
-            evolución que me encanta explorar. Actualmente, aunque mi trabajo es
-            en una fábrica que no está directamente relacionado con mi carrera,
-            he encontrado en ello una oportunidad para crecer. La empresa valora
-            mi crecimiento y me apoya en la búsqueda de una trayectoria alineada
-            con mi pasión por la programación. Soy una persona paciente,
-            amigable y me motiva la satisfacción de logros y la resolución de
-            problemas, grandes o pequeños. Mi objetivo es integrar mis
-            habilidades con desafíos frescos en programación, involucrarme más
-            en mi facultad y así potenciar mi compromiso con la excelencia en el
-            mundo de la informática."
-          </p>
-          <br />
-          <p className={`text-xl ${darkMode ? "text-white" : "text-gray-800"}`}>
-            ¡Gracias por conocerme! Emocionado por el crecimiento que aguarda,
-            estoy preparado para abrazar cada oportunidad y desafío. Ansío
-            colaborar, aprender y seguir explorando en el fascinante mundo de la
-            tecnología. ¡El futuro promete grandes aventuras y logros por
-            descubrir!
-          </p>
+          <div className={`space-y-6 text-lg leading-relaxed ${
+            darkMode ? "text-gray-300" : "text-gray-700"
+          }`}>
+            <p>
+              Soy <span className={`font-bold ${darkMode ? "text-white" : "text-gray-900"}`}>Licenciado en Informática</span> con una fuerte vocación por el desarrollo de software. Mi camino profesional combina la disciplina académica con la práctica constante en el ecosistema <span className="text-siglo21 font-bold italic">Java & Spring Boot</span>.
+            </p>
+
+            <p>
+              He centrado mi formación reciente en la creación de soluciones escalables, explorando arquitecturas de <span className={`font-bold ${darkMode ? "text-white" : "text-gray-900"}`}>Microservicios y despliegues con Docker</span>. Además, disfruto construyendo experiencias de usuario dinámicas utilizando <span className={`font-bold ${darkMode ? "text-white" : "text-gray-900"}`}>React y Next.js</span>.
+            </p>
+
+            <p>
+              Vengo de un entorno laboral que ha forjado mi <span className="font-bold underline decoration-teclab">ética de trabajo y capacidad de resolución bajo presión</span>. Hoy, con el título en mano, busco dar el salto definitivo al sector IT para aplicar mis conocimientos en proyectos reales, aportando valor, proactividad y un compromiso total con la excelencia técnica.
+            </p>
+          </div>
+
+          <div className={`mt-10 p-6 rounded-xl border-l-4 border-teclab italic ${
+            darkMode ? "bg-teclab/10 text-gray-300" : "bg-teclab/5 text-gray-700"
+          }`}>
+            "Como Licenciado, entiendo que la tecnología no solo se usa, se construye con propósito. Estoy listo para programar el futuro en equipos de alto rendimiento."
+          </div>
         </div>
       </div>
     </div>

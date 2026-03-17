@@ -3,28 +3,34 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import NavLinks from "./NavLinks";
 import darkModeIcon from "../assets/dark-mode-toggle-icon.svg";
 
+/**
+ * NavBar Component
+ * English: Responsive navigation bar with auto-hide logic, glassmorphism, and institutional styling.
+ */
+
 const NavBar = ({ darkMode, toggleDarkMode }) => {
   const [nav, setNav] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
 
+  // English: Logic to hide navbar on inactivity and show on mouse move
   useEffect(() => {
     let timeoutId;
-
     const handleMouseMove = () => {
       setNavVisible(true);
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => setNavVisible(false), 2000);
+      // Hidden after 2.5 seconds of inactivity
+      timeoutId = setTimeout(() => {
+        if (!nav) setNavVisible(false); // Don't hide if mobile menu is open
+      }, 2500);
     };
 
     document.addEventListener("mousemove", handleMouseMove);
-
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [nav]);
 
-  // Definir las secciones con sus respectivos nombres
   const sections = [
     { id: "inicio", label: "Inicio" },
     { id: "acerca de", label: "Acerca de" },
@@ -34,94 +40,35 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
   ];
 
   return (
-    <div
-      className={`fixed top-0 w-full z-50 ${
-        !navVisible ? "-translate-y-full" : ""
-      } transition-transform duration-300 ease-in-out ${
-        darkMode ? "bg-black text-white" : "bg-gray-200 text-black"
+    <nav
+      className={`fixed top-0 w-full z-[100] transition-all duration-500 ease-in-out ${
+        !navVisible ? "-translate-y-full" : "translate-y-0"
+      } ${
+        darkMode 
+          ? "bg-black/70 backdrop-blur-md border-b border-white/10" 
+          : "bg-white/80 backdrop-blur-md border-b border-gray-200"
       }`}
     >
-      <div className="md:hidden">
-        <div className="flex justify-between items-center px-4 h-24">
+      <div className="max-w-screen-xl mx-auto flex justify-between items-center h-20 px-6">
+        
+        {/* LOGO AREA */}
+        <div className="flex items-center">
           <img
             src={process.env.PUBLIC_URL + "/Logo-home.png"}
-            alt="Logo de JuanIgnacio"
-            className={`w-24 h-auto ${darkMode ? "filter invert" : ""}`}
-          />
-          <div
-            onClick={() => setNav(!nav)}
-            className={`cursor-pointer ${
-              darkMode ? "text-white" : "text-black"
+            alt="JuanIgnacio Logo"
+            className={`w-16 h-auto cursor-pointer transition-all duration-300 ${
+              darkMode ? "filter invert brightness-200" : "hover:opacity-80"
             }`}
-          >
-            {nav ? (
-              <FaTimes size={30} style={{ marginRight: "auto" }} />
-            ) : (
-              <FaBars size={30} />
-            )}
-          </div>
+          />
         </div>
 
-        {nav && (
-          <div
-            className={`${
-              darkMode ? "bg-black text-white" : "bg-white text-black"
-            }`}
-          >
-            <ul className="flex flex-col items-center">
-              {sections.map(({ id, label }) => (
-                <NavLinks
-                  key={id}
-                  toSection={id} // Cambiar 'link' a 'toSection'
-                  className={`px-4 cursor-pointer capitalize py-6 text-4xl ${
-                    darkMode ? "text-gray-500" : "text-black"
-                  }`}
-                  onClick={() => setNav(!nav)}
-                  darkMode={darkMode}
-                >
-                  {label}
-                </NavLinks>
-              ))}
-            </ul>
-
-            <div className="flex justify-center mt-4">
-              <button
-                className={`rounded ${
-                  darkMode
-                    ? "bg-blue-300 hover:bg-blue-300 text-white"
-                    : "bg-white-300 hover:bg-white-400 text-gray-800"
-                }`}
-                onClick={toggleDarkMode}
-              >
-                <img
-                  src={darkModeIcon}
-                  alt={darkMode ? "Light Mode" : "Dark Mode"}
-                  className="w-10 h-10"
-                />
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div className={`h-24 px-4 hidden md:flex justify-between items-center`}>
-        <img
-          src={process.env.PUBLIC_URL + "/Logo-home.png"}
-          alt="Logo de JuanIgnacio"
-          className={`w-24 h-auto ${
-            darkMode ? "filter invert" : "filter bg-gray-600"
-          }`}
-        />
-
-        <ul className="flex">
+        {/* DESKTOP MENU */}
+        <ul className="hidden md:flex items-center space-x-2">
           {sections.map(({ id, label }) => (
             <NavLinks
               key={id}
               toSection={id}
-              className={`px-2 md:px-6 cursor-pointer capitalize font-medium text-base md:text-lg ${
-                darkMode ? "text-white" : "text-black"
-              } hover:scale-105 duration-200`}
-              onClick={() => setNav(false)}
+              className="text-sm lg:text-base font-semibold px-4"
               darkMode={darkMode}
             >
               {label}
@@ -129,22 +76,55 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
           ))}
         </ul>
 
-        <button
-          className={`rounded ${
-            darkMode
-              ? "bg-blue-400 hover:bg-blue-500 text-white"
-              : "bg-white-300 hover:bg-white-400 text-gray-800"
-          }`}
-          onClick={toggleDarkMode}
-        >
-          <img
-            src={darkModeIcon}
-            alt={darkMode ? "Light Mode" : "Dark Mode"}
-            className="w-10 h-10"
-          />
-        </button>
+        {/* ACTIONS (Dark Mode & Mobile Toggle) */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={toggleDarkMode}
+            className={`p-2 rounded-xl transition-all duration-300 transform hover:rotate-12 ${
+              darkMode ? "bg-white/10 hover:bg-white/20" : "bg-gray-100 hover:bg-gray-200"
+            }`}
+          >
+            <img
+              src={darkModeIcon}
+              alt="Toggle Mode"
+              className="w-7 h-7"
+            />
+          </button>
+
+          {/* MOBILE BUTTON */}
+          <div
+            onClick={() => setNav(!nav)}
+            className={`md:hidden cursor-pointer z-[110] p-2 rounded-lg ${
+              darkMode ? "text-white" : "text-black"
+            }`}
+          >
+            {nav ? <FaTimes size={28} /> : <FaBars size={28} />}
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* MOBILE OVERLAY MENU */}
+      <div
+        className={`fixed top-0 left-0 w-full h-screen transition-all duration-500 md:hidden ${
+          nav ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        } ${darkMode ? "bg-black" : "bg-white"}`}
+      >
+        <ul className="flex flex-col justify-center items-center h-full space-y-8">
+          {sections.map(({ id, label }) => (
+            <li key={id} className="w-full text-center">
+              <NavLinks
+                toSection={id}
+                className="text-4xl font-bold block w-full py-4"
+                onClick={() => setNav(false)}
+                darkMode={darkMode}
+              >
+                {label}
+              </NavLinks>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   );
 };
 
